@@ -1,4 +1,4 @@
-package stevennlwu.com.github.coinquoter;
+package apiClient;
 
 import android.content.Context;
 
@@ -13,18 +13,23 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class coinMarketClient {
+import java.util.ArrayList;
 
+import model.CoinList;
 
+public class CoinMarketClient {
+
+    // url for calling API
     private static final String API_BASE_URL = "https://api.coinmarketcap.com/";
     private static final String API_VERSION = "v2";
     private static final String API_ENDPOINT = "listings";
     private String url = API_BASE_URL + API_VERSION + "/" + API_ENDPOINT + "/";
+    public ArrayList<CoinList> listOfListing= new ArrayList<model.CoinList>();
 
     // Instantiate the RequestQueue.
     RequestQueue queue;
 
-    public coinMarketClient(Context mainWinContext)
+    public CoinMarketClient(Context mainWinContext)
     {
         this.queue = Volley.newRequestQueue(mainWinContext);
     }
@@ -39,13 +44,12 @@ public class coinMarketClient {
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
                 try {
-                    JSONArray array = response.getJSONArray("date");
-
-                    // test by myself
-                    response.getJSONArray("data");
-                    response.getJSONArray("data").length();
-                    response.getJSONArray("data").optJSONObject(0);
-
+                    JSONArray array = response.getJSONArray("data");
+                    for(int coinID = 0; coinID < array.length(); coinID++)
+                    {
+                        JSONObject object = array.optJSONObject(coinID);
+                        listOfListing.add(new CoinList(object));
+                    }
 
                 } catch (JSONException e) {
                     e.printStackTrace();
