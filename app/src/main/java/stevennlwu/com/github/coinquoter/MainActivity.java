@@ -1,9 +1,12 @@
 package stevennlwu.com.github.coinquoter;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import java.util.ArrayList;
 
 import apiClient.CoinMarketClient;
+import model.CoinList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,14 +17,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.aClient = new CoinMarketClient(this);
+        this.aClient = new CoinMarketClient(this, this);
         this.getList();
 
     }
 
-    private void getList()
-    {
-       this.aClient.getListing();
-
+    private void getList() {
+        this.aClient.getListing();
     }
+
+    public void testCallback() {
+        ArrayList<CoinList> listOfCoin = model.ListOfCoinList.INSTANCE.getListOfListing();
+    }
+
 }

@@ -13,9 +13,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-
 import model.CoinList;
+import model.ListOfCoinList;
 
 public class CoinMarketClient {
 
@@ -24,13 +23,14 @@ public class CoinMarketClient {
     private static final String API_VERSION = "v2";
     private static final String API_ENDPOINT = "listings";
     private String url = API_BASE_URL + API_VERSION + "/" + API_ENDPOINT + "/";
-    public ArrayList<CoinList> listOfListing= new ArrayList<model.CoinList>();
+    private stevennlwu.com.github.coinquoter.MainActivity mainApp;
 
     // Instantiate the RequestQueue.
     RequestQueue queue;
 
-    public CoinMarketClient(Context mainWinContext)
+    public CoinMarketClient(stevennlwu.com.github.coinquoter.MainActivity mainApp, Context mainWinContext)
     {
+        this.mainApp = mainApp;
         this.queue = Volley.newRequestQueue(mainWinContext);
     }
 
@@ -44,12 +44,15 @@ public class CoinMarketClient {
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
                 try {
+                    ListOfCoinList.INSTANCE.resetList();;
                     JSONArray array = response.getJSONArray("data");
-                    for(int coinID = 0; coinID < array.length(); coinID++)
-                    {
+                    for(int coinID = 0; coinID < array.length(); coinID++) {
+
                         JSONObject object = array.optJSONObject(coinID);
-                        listOfListing.add(new CoinList(object));
+                        ListOfCoinList.INSTANCE.addACoin(new CoinList(object));
                     }
+
+                    testCallBack();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -67,4 +70,10 @@ public class CoinMarketClient {
         // Add JsonObjectRequest to the RequestQueue
         this.queue.add(jsObjRequest);
     }
+
+    public void testCallBack()
+    {
+        this.mainApp.testCallback();
+    }
+
 }
