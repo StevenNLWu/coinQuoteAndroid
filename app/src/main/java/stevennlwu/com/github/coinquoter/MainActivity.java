@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void testCallback() {
         ArrayList<CoinList> listOfCoin = model.ListOfCoinList.INSTANCE.getListOfListing();
+
+
+
     }
 
 }
