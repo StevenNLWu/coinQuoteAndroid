@@ -22,68 +22,71 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <android.support.design.widget.BottomNavigationView
+                    android:id="@+id/navigation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorWhite"
+                    android:baselineAligned="false"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:menu="@menu/navigation">
+
+                </android.support.design.widget.BottomNavigationView>
             </TableRow>
 
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/phone_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:padding="10dp"
-                    android:src="@drawable/btc" />
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="fill_parent"
+                    android:layout_height="?android:attr/listPreferredItemHeight"
+                    android:weightSum="2"
+                    android:padding="6dip" >
 
-                <TextVie
-                    android:id="@+id/textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    <ImageView
+                        android:id="@+id/icon0"
+                        android:layout_width="wrap_content"
+                        android:layout_height="fill_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="6dip"
+                        android:contentDescription="TODO"
+                        android:src="@drawable/btc"
+                        />
+
+                    <TextView
+                        android:id="@+id/secondLine"
+                        android:layout_width="fill_parent"
+                        android:layout_height="26dip"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_toEndOf="@id/icon0"
+                        android:singleLine="true"
+                        android:maxLines="1"
+                        android:text="1BTC (24hr: 0), 12.72721280649ETH (24hr:  -0.36)"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/firstLine"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_above="@id/secondLine"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignWithParentIfMissing="true"
+                        android:layout_toEndOf="@id/icon0"
+                        android:gravity="center_vertical"
+                        android:text="Bitcoin (BTC) 6758.44USD (24hr: -6.49)"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
 
             </TableRow>
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView" />
-            </TableRow>
         </TableLayout>
-
-        <ListView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <android.support.design.widget.BottomNavigationView
-                android:id="@+id/navigation"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@color/colorWhite"
-                android:baselineAligned="false"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:menu="@menu/navigation">
-
-            </android.support.design.widget.BottomNavigationView>
-        </ListView>
 
     </LinearLayout>
 
