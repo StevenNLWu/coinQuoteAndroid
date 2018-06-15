@@ -2,26 +2,26 @@ package model;
 
 import java.util.ArrayList;
 
-public enum ListOfCoinList {
+public enum Listings {
     INSTANCE;
 
-    private ArrayList<CoinList> listOfListing;
-    public ArrayList<CoinList> getListOfListing() {
+    private ArrayList<aListings> listOfListing;
+    public ArrayList<aListings> getListOfListing() {
         return listOfListing;
     }
 
     // re-initialize the list
     public void resetList() {
 
-        this.listOfListing = new ArrayList<CoinList>();
+        this.listOfListing = new ArrayList<aListings>();
     }
 
     // pass the full list to here
-    public void setFullList(ArrayList<CoinList> aList){
+    public void setFullList(ArrayList<aListings> aList){
         this.listOfListing = aList;
     }
 
-    public void addACoin(CoinList aCoin)
+    public void addACoin(aListings aCoin)
     {
         if(this.listOfListing == null)
             this.resetList();

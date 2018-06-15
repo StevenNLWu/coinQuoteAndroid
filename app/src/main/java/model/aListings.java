@@ -3,7 +3,7 @@ package model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class CoinList {
+public class aListings {
 
 
     private long id;
@@ -11,7 +11,7 @@ public class CoinList {
     private String symbol;
     private String websiteSlug;
 
-    public CoinList( JSONObject object) throws JSONException {
+    public aListings(JSONObject object) throws JSONException {
 
         this.id= object.getLong("id");
         this.name= object.getString("name");

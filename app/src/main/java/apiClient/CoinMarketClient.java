@@ -13,16 +13,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import model.CoinList;
-import model.ListOfCoinList;
+import model.Listings;
+import model.Ticker;
+import model.aListings;
 
 public class CoinMarketClient {
 
     // url for calling API
     private static final String API_BASE_URL = "https://api.coinmarketcap.com/";
     private static final String API_VERSION = "v2";
-    private static final String API_ENDPOINT = "listings";
-    private String url = API_BASE_URL + API_VERSION + "/" + API_ENDPOINT + "/";
     private stevennlwu.com.github.coinquoter.MainActivity mainApp;
 
     // Instantiate the RequestQueue.
@@ -36,31 +35,31 @@ public class CoinMarketClient {
 
     public void getListing()
     {
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET,
-                                                                this.url,
-                                                                null,
-                                                                new Response.Listener<JSONObject>() {
+        String url = this.API_BASE_URL + this.API_VERSION + "/" + "listings/";
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET
+                                                                ,url
+                                                                ,null
+                                                                ,new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
                 try {
-                    ListOfCoinList.INSTANCE.resetList();;
+                    Listings.INSTANCE.resetList();;
                     JSONArray array = response.getJSONArray("data");
                     for(int coinID = 0; coinID < array.length(); coinID++) {
 
                         JSONObject object = array.optJSONObject(coinID);
-                        ListOfCoinList.INSTANCE.addACoin(new CoinList(object));
+                        Listings.INSTANCE.addACoin(new aListings(object));
                     }
-
-                    testCallBack();
+                    callByGetListing();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         }
-        , new Response.ErrorListener() {
+                                                                , new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 // TODO Auto-generated method stub
@@ -71,9 +70,52 @@ public class CoinMarketClient {
         this.queue.add(jsObjRequest);
     }
 
-    public void testCallBack()
+    public void callByGetListing()
     {
-        this.mainApp.testCallback();
+        this.mainApp.callByGetListing();
     }
+
+    public void getTicker()
+    {
+        String url = this.API_BASE_URL + this.API_VERSION + "/" + "ticker/";
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET
+                                                                ,url
+                                                                ,null
+                                                                ,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                // TODO Auto-generated method stub
+                try {
+                    Ticker.INSTANCE.resetList();;
+                    JSONObject jObject = response.getJSONObject("data");
+                    for(int coinID = 0; coinID < jObject.length(); coinID++) {
+
+                        //JSONObject object = jObject.optJSONObject(coinID);
+                       // Listings.INSTANCE.addACoin(new aListings(object));
+                    }
+
+                    callByGetTicker();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+                                                                , new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // TODO Auto-generated method stub
+            }
+        });
+
+        // Add JsonObjectRequest to the RequestQueue
+        this.queue.add(jsObjRequest);
+    }
+    public void callByGetTicker()
+    {
+        this.mainApp.callByGetTicker();
+    }
+
 
 }
