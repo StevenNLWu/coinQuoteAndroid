@@ -6,10 +6,10 @@ import org.json.JSONObject;
 public class aListings {
 
 
-    private long id;
-    private String name;
-    private String symbol;
-    private String websiteSlug;
+    private final long id;
+    private final String name;
+    private final String symbol;
+    private final String websiteSlug;
 
     public aListings(JSONObject object) throws JSONException {
 

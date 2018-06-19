@@ -13,9 +13,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Iterator;
+
 import model.Listings;
 import model.Ticker;
 import model.aListings;
+import model.aTicker;
 
 public class CoinMarketClient {
 
@@ -45,9 +48,10 @@ public class CoinMarketClient {
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
                 try {
-                    Listings.INSTANCE.resetList();;
-                    JSONArray array = response.getJSONArray("data");
-                    for(int coinID = 0; coinID < array.length(); coinID++) {
+                        JSONArray array = response.getJSONArray("data");
+                        Listings.INSTANCE.resetList(array.length());
+
+                        for(int coinID = 0; coinID < array.length(); coinID++) {
 
                         JSONObject object = array.optJSONObject(coinID);
                         Listings.INSTANCE.addACoin(new aListings(object));
@@ -87,13 +91,15 @@ public class CoinMarketClient {
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
                 try {
-                    Ticker.INSTANCE.resetList();;
-                    JSONObject jObject = response.getJSONObject("data");
-                    for(int coinID = 0; coinID < jObject.length(); coinID++) {
+                        JSONObject jObject = response.getJSONObject("data");
+                        Iterator<?> keys = jObject.keys();
+                        Ticker.INSTANCE.resetList(jObject.length());
 
-                        //JSONObject object = jObject.optJSONObject(coinID);
-                       // Listings.INSTANCE.addACoin(new aListings(object));
-                    }
+                        while (keys.hasNext()) {
+                            String key = (String) keys.next();
+                            JSONObject object = jObject.optJSONObject(key);
+                            Ticker.INSTANCE.addATicker(new aTicker(object));
+                        }
 
                     callByGetTicker();
 

@@ -11,8 +11,8 @@ public enum Ticker {
     }
 
     // re-initialize the list
-    public void resetList() {
-        this.listOfTicker = new ArrayList<aTicker>();
+    public void resetList(int size) {
+        this.listOfTicker = new ArrayList<aTicker>(size);
     }
 
     // pass the full list to here
@@ -22,9 +22,6 @@ public enum Ticker {
 
     public void addATicker(aTicker aTicker)
     {
-        if(this.listOfTicker == null)
-            this.resetList();
-
         this.listOfTicker.add(aTicker);
 
     }

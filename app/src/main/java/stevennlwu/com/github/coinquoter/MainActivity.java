@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
         this.aClient = new CoinMarketClient(this, this);
         this.aClient.getTicker();
-
     }
 
     public void callByGetListing() {

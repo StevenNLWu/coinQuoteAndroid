@@ -11,9 +11,9 @@ public enum Listings {
     }
 
     // re-initialize the list
-    public void resetList() {
+    public void resetList(int size) {
 
-        this.listOfListing = new ArrayList<aListings>();
+        this.listOfListing = new ArrayList<aListings>(size);
     }
 
     // pass the full list to here
@@ -23,11 +23,7 @@ public enum Listings {
 
     public void addACoin(aListings aCoin)
     {
-        if(this.listOfListing == null)
-            this.resetList();
-
         this.listOfListing.add(aCoin);
-
     }
 
 
