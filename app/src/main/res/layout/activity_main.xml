@@ -98,6 +98,18 @@
                     app:columnCount="4"
                     >
 
+                    <ImageView
+                        android:id="@+id/icon2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentTop="true"
+                        android:contentDescription="TODO"
+                        android:layout_margin="6dip"
+                        android:src="@drawable/coinmarket"
+                        app:layout_columnSpan="1"
+                        app:layout_rowSpan="2" />
+
                     <TextView
                         android:id="@+id/asset2"
                         android:layout_width="wrap_content"
@@ -107,20 +119,8 @@
                         android:layout_alignWithParentIfMissing="true"
                         android:layout_toEndOf="@id/icon2"
                         android:gravity="center_vertical"
-                        android:layout_marginStart="6dip"
+                        android:layout_margin="6dip"
                         android:text="BTC"
-                        app:layout_rowSpan="2"
-                        app:layout_columnSpan="1"
-                        />
-
-                    <ImageView
-                        android:id="@+id/icon2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentTop="true"
-                        android:contentDescription="TODO"
-                        android:src="@drawable/eth"
                         app:layout_rowSpan="2"
                         app:layout_columnSpan="1"
                         />

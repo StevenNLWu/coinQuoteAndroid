@@ -20,8 +20,6 @@ public class aQuotes {
         this.hourChange= object.getDouble("percent_change_1h");
         this.dayChange= object.getInt("percent_change_24h");
         this.weekChange= object.getDouble("percent_change_7d");
-
-
     }
 
 }

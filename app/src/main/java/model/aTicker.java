@@ -2,9 +2,9 @@ package model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import java.util.HashMap;
 
 public class aTicker {
-
 
     private final long id;
     private final String name;
@@ -14,8 +14,8 @@ public class aTicker {
     private final double circulating_supply;
     private final double total_supply;
     private final String max_supply;
-    private final JSONObject quotes;
-    //private HashMap<String, aQuotes> quotes;
+    //private final JSONObject quotes;
+    private HashMap<String, aQuotes> quotes = new HashMap<>();
     private final long last_updated;
 
     public aTicker(JSONObject object) throws JSONException {
@@ -28,14 +28,9 @@ public class aTicker {
         this.circulating_supply= object.getDouble("circulating_supply");
         this.total_supply= object.getDouble("total_supply");
         this.max_supply =object.getString("max_supply");
-
-        this.quotes  =object.getJSONObject("quotes");
-        //aQuotes test =  new aQuotes(object.getJSONObject("quotes"));
-        //this.quotes = new HashMap<String, aQuotes>().put(object.getJSONObject("quotes").keys().next(), test);
-
+        String strCurr = (object.getJSONObject("quotes").keys().next());
+        this.quotes.put(strCurr, new aQuotes(object.getJSONObject("quotes").getJSONObject(strCurr)));
         this.last_updated= object.getLong("last_updated");
-
-}
-
+    }
 }
 
