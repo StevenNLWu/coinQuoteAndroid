@@ -230,6 +230,100 @@
 
                 */
 
+/* try 3
+
+                    /* Find Tablelayout defined in main.xml */
+                    TableLayout mainTable = (TableLayout) findViewById(R.id.mainTable01);
+
+                    /* Create a new row to be added. */
+                    TableRow newTRow = new TableRow(MainActivity.this);
+                    newTRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT
+                            , TableRow.LayoutParams.MATCH_PARENT));
+                    newTRow.requestLayout();
+
+                    /* Create Grid */
+                    GridLayout newGrid = new GridLayout(MainActivity.this);
+                    newGrid.setRowCount(2);
+                    newGrid.setColumnCount(4);
+                    newGrid.requestLayout();
+
+                    /* Create image */
+                    ImageView image = new ImageView(MainActivity.this);
+                    image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
+                                                                    , ViewGroup.LayoutParams.MATCH_PARENT));
+                    image.setImageResource(R.drawable.coinmarket);
+                    image.setBaselineAlignBottom(true);
+                    GridLayout.LayoutParams GridParams = new GridLayout.LayoutParams();
+                    GridParams.setMargins(6,6,6,6);
+                    GridParams.rowSpec = GridLayout.spec(0, 2);
+                    GridParams.columnSpec = GridLayout.spec(0, 1);
+                    // Once you are done set the LayoutParams to the layout
+                    image.setLayoutParams(GridParams);
+                    image.requestLayout();
+
+                    /* Create text 1 */
+                    TextView newText1 = new TextView(MainActivity.this);
+                    RelativeLayout.LayoutParams Textparams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT
+                                                                                            , RelativeLayout.LayoutParams.MATCH_PARENT);
+                    Textparams.addRule(RelativeLayout.ALIGN_PARENT_END, 1);
+                    Textparams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 1);
+                    newText1.setGravity(Gravity.CENTER );
+                    Textparams.setMargins(6,6,6,6);
+                    newText1.setText("BTC");
+                    GridParams.rowSpec = GridLayout.spec(0, 2);
+                    GridParams.columnSpec = GridLayout.spec(0, 1);
+                    // Once you are done set the LayoutParams to the layout
+                    newText1.setLayoutParams(GridParams);
+                    newText1.requestLayout();
+                    newText1.setLayoutParams(Textparams);
+                    newText1.requestLayout();
+
+                    /* Create text 2 */
+                    TextView newText2 = new TextView(MainActivity.this);
+                    RelativeLayout.LayoutParams Text2params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT
+                                                                                    , RelativeLayout.LayoutParams.WRAP_CONTENT);
+                    newText2.setText("6758.44USD (24hr: -6.49)");
+                    newText2.setTextSize(16);
+                    // Add all the rules you need
+                    Text2params.addRule(RelativeLayout.ALIGN_PARENT_END, 1);
+                    Text2params.addRule(RelativeLayout.ALIGN_PARENT_TOP, 1);
+                    newText2.setGravity(Gravity.CENTER );
+                    Textparams.addRule(RelativeLayout.END_OF, image.getId());
+                    newText2.setLayoutParams(Text2params);
+                    GridLayout.LayoutParams Text2Params2 = new GridLayout.LayoutParams();
+                    Text2Params2.rowSpec = GridLayout.spec(0, 1);
+                    Text2Params2.columnSpec = GridLayout.spec(0, 2);
+                    // Once you are done set the LayoutParams to the layout
+                    newText2.setLayoutParams(Textparams);
+                    newText2.requestLayout();
+                    newText2.setLayoutParams(Text2Params2);
+                    newText2.requestLayout();
+
+                    /* Create text 3 */
+                    TextView newText3 = new TextView(MainActivity.this);
+                    newText3.setText("1BTC (24hr: 0), 12.72721280649ETH (24hr:  -0.36)");
+                    newText3.setTextSize(12);
+                    ViewGroup.LayoutParams Text3params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT
+                            , ViewGroup.LayoutParams.WRAP_CONTENT);
+                    Text3params.width = 100;
+                    GridLayout.LayoutParams Text3params2 = new GridLayout.LayoutParams();
+                    Text3params2.rowSpec = GridLayout.spec(0, 1);
+                    Text3params2.columnSpec = GridLayout.spec(0, 2);
+                    // Once you are done set the LayoutParams to the layout
+                    newText3.setLayoutParams(Text3params);
+                    newText3.requestLayout();
+                    newText3.setLayoutParams(Text3params2);
+                    newText3.requestLayout();
+
+                    /* add all together */
+                    newGrid.addView(image);
+                    newGrid.addView(newText1);
+                    newGrid.addView(newText2);
+                    newGrid.addView(newText3);
+                    newTRow.addView(newGrid);
+                    mainTable.addView(newTRow);
+
+*/
 
 
 

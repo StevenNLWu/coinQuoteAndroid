@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <TableLayout
-            android:id="@+id/TableLayout"
+            android:id="@+id/mainTable01"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
