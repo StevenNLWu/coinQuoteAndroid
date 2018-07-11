@@ -88,6 +88,7 @@
             </TableRow>
 
             <TableRow
+                android:id="@+id/tr"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -99,7 +100,7 @@
                     >
 
                     <ImageView
-                        android:id="@+id/icon002"
+                        android:id="@+id/icon"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentBottom="true"
@@ -111,13 +112,13 @@
                         app:layout_columnSpan="1"/>
 
                     <TextView
-                        android:id="@+id/asset002"
+                        android:id="@+id/assetName"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentTop="true"
                         android:layout_alignWithParentIfMissing="true"
-                        android:layout_toEndOf="@id/icon002"
+                        android:layout_toEndOf="@id/icon"
                         android:gravity="center_vertical"
                         android:layout_margin="6dip"
                         android:text="BTC"
@@ -126,14 +127,14 @@
                         />
 
                     <TextView
-                        android:id="@+id/firstLine002"
+                        android:id="@+id/quote01"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_above="@id/secondLine002"
+                        android:layout_above="@id/quote02"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentTop="true"
                         android:layout_alignWithParentIfMissing="true"
-                        android:layout_toEndOf="@id/icon002"
+                        android:layout_toEndOf="@id/icon"
                         android:gravity="center_vertical"
                         android:text="6758.44USD (24hr: -6.49)"
                         android:textSize="16sp"
@@ -142,12 +143,12 @@
                         />
 
                     <TextView
-                        android:id="@+id/secondLine002"
+                        android:id="@+id/quote02"
                         android:layout_width="fill_parent"
                         android:layout_height="26dip"
                         android:layout_alignParentBottom="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_toEndOf="@id/icon002"
+                        android:layout_toEndOf="@id/icon"
                         android:maxLines="1"
                         android:singleLine="true"
                         android:text="1BTC (24hr: 0), 12.72721280649ETH (24hr:  -0.36)"
