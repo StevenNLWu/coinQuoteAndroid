@@ -38,7 +38,6 @@
             </TableRow>
 
             <TableRow
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -48,116 +47,26 @@
                     android:padding="6dip"
                     android:weightSum="2">
 
-                    <ImageView
-                        android:id="@+id/icon001"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginEnd="6dip"
-                        android:contentDescription="TODO"
-                        android:src="@drawable/btc" />
+                <ImageView
+                    android:id="@+id/icon001"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="6dip"
+                    android:contentDescription="TODO"
+                    android:src="@drawable/eth" />
 
-                    <TextView
-                        android:id="@+id/firstLine001"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@id/secondLine001"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignWithParentIfMissing="true"
-                        android:layout_toEndOf="@id/icon001"
-                        android:gravity="center_vertical"
-                        android:text="Bitcoin (BTC) 6758.44USD (24hr: -6.49)"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/secondLine001"
-                        android:layout_width="fill_parent"
-                        android:layout_height="26dip"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_toEndOf="@id/icon001"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:text="1BTC (24hr: 0), 12.72721280649ETH (24hr:  -0.36)"
-                        android:textSize="12sp" />
-
-                </RelativeLayout>
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <android.support.v7.widget.GridLayout
+                <TextView
+                    android:id="@+id/firstLine002"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:rowCount="2"
-                    app:columnCount="4"
-                    >
+                    android:gravity = "center_vertical|left|start"
+                    android:text="ETH (ETH) 300.44USD (24hr: -6.49)"
+                    android:textSize="16sp"
+                    android:layout_toRightOf="@id/icon001"/>
 
-                    <ImageView
-                        android:id="@+id/icon002"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentTop="true"
-                        android:contentDescription="TODO"
-                        android:layout_margin="6dip"
-                        android:src="@drawable/coinmarket"
-                        app:layout_rowSpan="2"
-                        app:layout_columnSpan="1"/>
-
-                    <TextView
-                        android:id="@+id/asset002"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignWithParentIfMissing="true"
-                        android:layout_toEndOf="@id/icon002"
-                        android:gravity="center_vertical"
-                        android:layout_margin="6dip"
-                        android:text="BTC"
-                        app:layout_rowSpan="2"
-                        app:layout_columnSpan="1"
-                        />
-
-                    <TextView
-                        android:id="@+id/firstLine002"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_above="@id/secondLine002"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignWithParentIfMissing="true"
-                        android:layout_toEndOf="@id/icon002"
-                        android:gravity="center_vertical"
-                        android:text="6758.44USD (24hr: -6.49)"
-                        android:textSize="16sp"
-                        app:layout_rowSpan="1"
-                        app:layout_columnSpan="2"
-                        />
-
-                    <TextView
-                        android:id="@+id/secondLine002"
-                        android:layout_width="fill_parent"
-                        android:layout_height="26dip"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_toEndOf="@id/icon002"
-                        android:maxLines="1"
-                        android:singleLine="true"
-                        android:text="1BTC (24hr: 0), 12.72721280649ETH (24hr:  -0.36)"
-                        android:textSize="12sp"
-                        app:layout_rowSpan="1"
-                        app:layout_columnSpan="2"
-                        />
-
-                </android.support.v7.widget.GridLayout>
+            </RelativeLayout>
             </TableRow>
+
 
         </TableLayout>
 

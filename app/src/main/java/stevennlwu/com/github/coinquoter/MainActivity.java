@@ -6,6 +6,8 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 
@@ -29,15 +31,25 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_all:
 
                     /* Find Tablelayout defined in main.xml */
-                    TableLayout mainTable = (TableLayout) findViewById(R.id.TableLayout);
+                    TableLayout mainTable = findViewById(R.id.TableLayout);
 
                     /* Create a new row to be added. */
                     TableRow newTRow = new TableRow(MainActivity.this);
                     newTRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT
-                                                                      , TableRow.LayoutParams.MATCH_PARENT));
-                    ViewGroup tRow = newTRow;
+                                                                    , TableRow.LayoutParams.MATCH_PARENT));
+                    newTRow.requestLayout();
 
-                    mainTable.addView(tRow);
+                    /* Create image */
+                    ImageView image = new ImageView(MainActivity.this);
+                    ViewGroup.MarginLayoutParams marginParams = new ViewGroup.MarginLayoutParams(image.getLayoutParams());
+                    marginParams.setMargins(6, 6, 6, 6);
+                    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(marginParams);
+                    image.setLayoutParams(layoutParams);
+                    image.requestLayout();
+
+                    /* add all together */
+                    newTRow.addView(image);
+                    mainTable.addView(newTRow);
 
                     return true;
 
