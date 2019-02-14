@@ -1,6 +1,8 @@
 package stevennlwu.com.github.coinquoter;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -27,72 +29,117 @@ import static java.security.AccessController.getContext;
 public class MainActivity extends AppCompatActivity {
 
     // event listener for the Top-menu-bar
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
 
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_all:
+    {
+        mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
+            @SuppressLint("ResourceType")
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.navigation_all:
 
-                    /* Find Tablelayout defined in main.xml */
+                    /* ind Tablelayout defined in main.xml */
                     TableLayout mainTable = findViewById(R.id.TableLayout);
 
-                    /* Create a new row to be added. */
-                    //TableRow newTRow = new TableRow(MainActivity.this);
-                    //newTRow.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT
-                    //                                                , TableRow.LayoutParams.MATCH_PARENT));
-                    //newTRow.requestLayout();
-
-                    /* Create image */
-                    //ImageView image = new ImageView(MainActivity.this);
-                    //ViewGroup.MarginLayoutParams marginParams = new ViewGroup.MarginLayoutParams(image.getLayoutParams());
-                    //image.setPadding(6, 6, 6, 6);
-                    //RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(marginParams);
-                    //image.setLayoutParams(layoutParams);
-                    //image.requestLayout();
-
-                    /* add all together */
-                    //newTRow.addView(image);
-                    //mainTable.addView(newTRow);
-
-
-                    TableRow row = new TableRow(MainActivity.this);
-                    row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
-
-
-                    ImageView image = new ImageView(MainActivity.this);
-                    image.setImageResource(R.drawable.btc);
-                    image.setPadding(6, 6, 6, 6);
-                    image.setId(2);
-
-                    RelativeLayout relativeLayout = new RelativeLayout(MainActivity.this);
-
-
-
-/*
-                    TypedValue outValue = new TypedValue();
-                    MainActivity.this.getTheme().resolveAttribute(android.R.attr.listPreferredItemHeight, outValue, true);
-                    cardView.setBackgroundResource(outValue.resourceId);
+                    // remove all row except the header
+                        /*
+                    int childCount = mainTable.getChildCount();
+                    if (childCount > 1) {
+                        mainTable.removeViews(1, childCount - 1);
+                    }
                     */
 
-                    relativeLayout.addView(image);
-                    row.addView(relativeLayout);
-                    mainTable.addView(row);
+                    // create a new row
+                    TableRow tbRow = new TableRow(MainActivity.this);
+
+                    // create a new RelativeLayout
+                    RelativeLayout rl =new RelativeLayout(MainActivity.this);
+                    rl.setBackgroundColor(2);
+
+                    // create a new Image
+                    ImageView image = new ImageView(MainActivity .this);
+                    image.setImageResource(R.drawable.btc);
+                    image.setId(2);
+
+                    // set the image params
+
+                        android.util.TypedValue value = new android.util.TypedValue();
+                        boolean b = getTheme().resolveAttribute(android.R.attr.listPreferredItemHeight, value, true);
+                        String s = TypedValue.coerceToString(value.type, value.data);
+                        android.util.DisplayMetrics metrics = new android.util.DisplayMetrics();
+                        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+                        float ret = value.getDimension(metrics);
+
+                        TypedValue value = new TypedValue();
+                        ((Activity)context).getTheme().resolveAttribute(android.R.attr.listPreferredItemHeight, value, true);
+
+                    RelativeLayout.LayoutParams imageParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,  h);
+                    imageParams.setMarginEnd((int) getResources().getDimension(R.dimen.image_marginEnd));
+                    image.setLayoutParams(imageParams);
+
+                    // add view component by component
+                    rl.addView(image,imageParams);
+                    tbRow.addView(rl);
+                    mainTable.addView(tbRow);
+
+
+                    /*
+                    RelativeLayout.LayoutParams firstImageParams =  new RelativeLayout.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT);
+
+                    /*
+                    int pixelsValue = 6; // margin in pixels
+                    float d = MainActivity.this.getResources().getDisplayMetrics().density;
+                    int margin = (int)(pixelsValue * d);
+                    firstImageParams.setMarginEnd(margin);
+
+                    tbRow.addView(rl);
+                    mainTable.addView(tbRow);
+                    */
+
+
+                    // test add image
+                        /*
+                    RelativeLayout channel=new RelativeLayout(MainActivity.this);
+                    channel.setBackgroundColor(2);
+                    ImageView imageTest = new ImageView(MainActivity .this);
+                    imageTest.setImageResource(R.drawable.btc);
+                    imageTest.setId(2);
+                    RelativeLayout.LayoutParams firstImageParams = new RelativeLayout.LayoutParams(
+                            android.view.ViewGroup.LayoutParams.WRAP_CONTENT,
+                            android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+                    firstImageParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
+                    channel.addView(imageTest,firstImageParams);
+                    tbRow.addView(channel);
+                    mainTable.addView(tbRow);
+                    */
+
+
+
+                        // test can i do dynamical display
+                        /*
+                        TextView tv0 = new TextView(MainActivity.this);
+                        tv0.setText(" Sl.No ");
+                        tv0.setTextColor(Color.BLUE);
+                        tbrow0.addView(tv0);
+
+                        mainTable.addView(tbrow0);
+                        */
 
                     return true;
 
-                case R.id.navigation_save:
+                    case R.id.navigation_save:
 
-                    return true;
-                case R.id.navigation_setting:
+                        return true;
+                    case R.id.navigation_setting:
 
-                    return true;
+                        return true;
+                }
+                return false;
             }
-            return false;
-        }
-    };
+        };
+    }
 
 
     private CoinMarketClient aClient;
