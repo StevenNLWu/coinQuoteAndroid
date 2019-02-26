@@ -8,9 +8,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.util.TypedValue;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -46,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
             Resources r = MainActivity.this.getResources();
             int px = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, marginEnd, r.getDisplayMetrics());
 
+            //
+
             switch (item.getItemId()) {
                 case R.id.navigation_all:
 
@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
                     // create a new Image
                     ImageView image = new ImageView(MainActivity .this);
                     image.setImageResource(R.drawable.btc);
-                    image.setId(2);
 
                     // set the image params
                     RelativeLayout.LayoutParams imageParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
