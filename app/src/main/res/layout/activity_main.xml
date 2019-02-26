@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <TableLayout
-            android:id="@+id/TableLayout"
+            android:id="@+id/TableLayout_template"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -38,35 +38,36 @@
             </TableRow>
 
             <TableRow
+                android:id="@+id/TableRow_template"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <RelativeLayout
-                    android:layout_width="fill_parent"
+                    android:id="@+id/RelativeLayout_template"
+                    android:layout_width="match_parent"
                     android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:padding="6dip"
                     android:weightSum="2">
 
-                <ImageView
-                    android:id="@+id/icon001"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="6dip"
-                    android:contentDescription="TODO"
-                    android:src="@drawable/eth" />
+                    <ImageView
+                        android:id="@+id/imageView_template"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_margin="6dip"
+                        android:contentDescription="TODO"
+                        android:src="@drawable/btc" />
 
-                <TextView
-                    android:id="@+id/firstLine002"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity = "center_vertical|left|start"
-                    android:text="ETH (ETH) 300.44USD (24hr: -6.49)"
-                    android:textSize="16sp"
-                    android:layout_toRightOf="@id/icon001"/>
+                    <TextView
+                        android:id="@+id/textView_template"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity = "center_vertical|left|start"
+                        android:text="ETH (ETH) 300.44USD (24hr: -6.49)"
+                        android:textSize="16sp"
+                        android:layout_toRightOf="@id/imageView_template"/>
 
-            </RelativeLayout>
+
+                </RelativeLayout>
             </TableRow>
-
 
         </TableLayout>
 
