@@ -60,7 +60,7 @@
                         android:id="@+id/textView_template"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:gravity = "center_vertical|left|start"
+                        android:gravity = "center_vertical"
                         android:text="ETH (ETH) 300.44USD (24hr: -6.49)"
                         android:textSize="16sp"
                         android:layout_toRightOf="@id/imageView_template"/>
