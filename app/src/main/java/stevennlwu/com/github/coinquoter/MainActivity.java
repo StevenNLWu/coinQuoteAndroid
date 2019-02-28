@@ -105,42 +105,6 @@ public class MainActivity extends AppCompatActivity {
                 tbRow.getLayoutParams().width= RelativeLayout.LayoutParams.MATCH_PARENT;
                 tbRow.getLayoutParams().height= RelativeLayout.LayoutParams.MATCH_PARENT;
 
-                    /* refer to a template View to set the layout params
-
-                                    // create a new row
-                                    TableRow tbRow = new TableRow(MainActivity.this);
-
-                                    // create a new RelativeLayout
-                                    RelativeLayout rl =new RelativeLayout(MainActivity.this);
-                                    rl.setBackgroundColor(2);
-
-                                    // set the RelativeLayout params
-                                    RelativeLayout rl_template = findViewById(R.id.RelativeLayout_template);
-                                    ViewGroup.LayoutParams rlParams = rl_template.getLayoutParams();
-                                    rl.setLayoutParams(rlParams);
-
-                                    // create a new Image
-                                    ImageView image = new ImageView(MainActivity .this);
-                                    image.setImageResource(R.drawable.btc);
-                                    image.setId(2);
-
-                                    // set the image params
-                                    ImageView img_template = findViewById(R.id.imageView_template);
-                                    ViewGroup.LayoutParams imgParams = img_template.getLayoutParams();
-                                    image.setLayoutParams(imgParams);
-
-                                    // add view component by component
-                                    rl.addView(image);
-                                    tbRow.addView(rl);
-                                    mainTable.addView(tbRow);
-
-                                    /*
-
-
-                                     */
-
-
-
                 return true;
 
                 case R.id.navigation_save:
@@ -162,14 +126,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // declare menu
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         // for CoinMarket API
         this.aClient = new CoinMarketClient(this, this);
-        this.aClient.getTicker();
+        this.aClient.getListing();
     }
 
     public void callByGetListing() {

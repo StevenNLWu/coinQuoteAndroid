@@ -25,17 +25,11 @@ import model.aListings;
 import model.aTicker;
 import stevennlwu.com.github.coinquoter.R;
 
-public class CoinMarketClient {
-
-    // url for calling API
-    private static final String strApiProtocol  = "https";
-    private static final String strApiURL = "pro-api.coinmarketcap.com";
-    private static final String strApiVersion = "v1";
-    private static final String strApiType = "cryptocurrency";
+public class CoinMarketClient_public {
 
     // old version public API url
-    //private static final String API_BASE_URL = "https://api.coinmarketcap.com/";
-    //private static final String API_VERSION = "v2";
+    private static final String API_BASE_URL = "https://api.coinmarketcap.com/";
+    private static final String API_VERSION = "v2";
 
     private stevennlwu.com.github.coinquoter.MainActivity mainApp;
     private String strApiKey;
@@ -43,25 +37,15 @@ public class CoinMarketClient {
     // Instantiate the RequestQueue.
     RequestQueue queue;
 
-    public CoinMarketClient(stevennlwu.com.github.coinquoter.MainActivity mainApp, Context mainWinContext)
+    public CoinMarketClient_public(stevennlwu.com.github.coinquoter.MainActivity mainApp, Context mainWinContext)
     {
         this.mainApp = mainApp;
         this.queue = Volley.newRequestQueue(mainWinContext);
-        this.strApiKey =  mainApp.getResources().getString(R.string.key);
     }
 
     public void getListing()
     {
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme(this.strApiProtocol)
-                .authority(this.strApiURL)
-                .appendPath(this.strApiVersion)
-                .appendPath(this.strApiType)
-                .appendPath("listings")
-                .appendPath("latest")
-                .appendQueryParameter("limit", "2");
-
-        String url = builder.build().toString();
+        String url = this.API_BASE_URL + this.API_VERSION + "/" + "listings/";
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET
                                                                 ,url
@@ -115,17 +99,7 @@ public class CoinMarketClient {
 
     public void getTicker()
     {
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme(this.strApiProtocol)
-                .authority(this.strApiURL)
-                .appendPath(this.strApiVersion)
-                .appendPath(this.strApiType)
-                .appendPath("listings")
-                .appendPath("latest")
-                .appendQueryParameter("limit", "100");
-
-        String url = builder.build().toString();
-
+        String url = this.API_BASE_URL + this.API_VERSION + "/" + "listings/";
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET
                                                                 ,url
