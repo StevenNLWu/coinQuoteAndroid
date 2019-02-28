@@ -22,8 +22,6 @@ import model.Ticker;
 import model.aListings;
 import model.aTicker;
 
-import static android.view.View.inflate;
-import static java.security.AccessController.getContext;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -89,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // add view component by component
                 mainTable.addView(tbRow);
+
                 tbRow.addView(rl);
                 rl.addView(image, imageParams);
                 rl.addView(text,txtParams);
