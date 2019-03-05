@@ -19,10 +19,13 @@ import java.util.ArrayList;
 import apiClient.CoinMarketClient;
 import model.Listings;
 import model.Ticker;
-import model.aListings;
 import model.aTicker;
 
-
+/*
+ *
+ *   Our App in here
+ *
+ */
 public class MainActivity extends AppCompatActivity {
 
     // event listener for the Top-menu-bar
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         @SuppressLint("ResourceType")
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
 
             // get value of “listPreferredItemHeight” attribute
             android.util.TypedValue value = new android.util.TypedValue();
@@ -121,25 +125,43 @@ public class MainActivity extends AppCompatActivity {
 
     private CoinMarketClient aClient;
 
+    /*
+    *
+    *   Our App starts in here
+    *
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // declare menu
+
+        // declare menu and add a event listener
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        // for CoinMarket API
+        // calling CoinMarket API, get data to generate our App's first page
         this.aClient = new CoinMarketClient(this, this);
         this.aClient.getListing();
+
     }
 
-    public void callByGetListing() {
-        ArrayList<aListings> listOfListing = Listings.INSTANCE.getListOfListing();
+    /*
+     *
+     *   This function will be callbacked after calling coinMarket's API
+     *
+     */
+    public void callByGetListing(model.Listings listings ) {
+     //   ArrayList<aListings> listOfListing = Listings.INSTANCE.getListOfListing();
+
+
     }
 
-
+    /*
+     *
+     *   This function will be callbacked after calling coinMarket's API
+     *
+     */
     public void callByGetTicker() {
 
         ArrayList<aTicker> listOfListing = Ticker.INSTANCE.getListOfTicker();

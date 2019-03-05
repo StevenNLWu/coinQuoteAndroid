@@ -2,7 +2,6 @@ package apiClient;
 
 import android.content.Context;
 import android.net.Uri;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -10,19 +9,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONArray;
-import org.json.JSONException;
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import org.json.JSONObject;
-
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
-
-import model.Listings;
-import model.Ticker;
-import model.aListings;
-import model.aTicker;
 import stevennlwu.com.github.coinquoter.R;
 
 public class CoinMarketClient {
@@ -59,7 +51,7 @@ public class CoinMarketClient {
                 .appendPath(this.strApiType)
                 .appendPath("listings")
                 .appendPath("latest")
-                .appendQueryParameter("limit", "2");
+                .appendQueryParameter("limit", "100");
 
         String url = builder.build().toString();
 
@@ -71,17 +63,16 @@ public class CoinMarketClient {
             public void onResponse(JSONObject response) {
                 // TODO Auto-generated method stub
                 try {
-                        JSONArray array = response.getJSONArray("data");
-                        Listings.INSTANCE.resetList(array.length());
+                    String mJsonString = response.toString();
+                    JsonParser parser = new JsonParser();
+                    JsonElement mJson =  parser.parse(mJsonString);
+                    Gson gson = new Gson();
+                    model.Listings listings = gson.fromJson(mJson, model.Listings.class);
 
-                        for(int coinID = 0; coinID < array.length(); coinID++) {
+                    // call back to a function inside this class
+                    callByGetListing(listings);
 
-                        JSONObject object = array.optJSONObject(coinID);
-                        Listings.INSTANCE.addACoin(new aListings(object));
-                    }
-                    callByGetListing();
-
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -108,11 +99,14 @@ public class CoinMarketClient {
         this.queue.add(jsObjRequest);
     }
 
-    public void callByGetListing()
+    // call back to mainApp
+    public void callByGetListing(model.Listings listings)
     {
-        this.mainApp.callByGetListing();
+        this.mainApp.callByGetListing(listings);
     }
 
+
+    /*
     public void getTicker()
     {
         Uri.Builder builder = new Uri.Builder();
@@ -166,6 +160,6 @@ public class CoinMarketClient {
     {
         this.mainApp.callByGetTicker();
     }
-
+*/
 
 }
