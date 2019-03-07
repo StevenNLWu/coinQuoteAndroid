@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -28,6 +29,8 @@ import model.aTicker;
  */
 public class MainActivity extends AppCompatActivity {
 
+    private UiHandler uiHander;
+
     // event listener for the Top-menu-bar
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -38,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
             // get value of “listPreferredItemHeight” attribute
             android.util.TypedValue value = new android.util.TypedValue();
-            boolean b = getTheme().resolveAttribute(android.R.attr.listPreferredItemHeight, value, true);
-            String s = TypedValue.coerceToString(value.type, value.data);
+            getTheme().resolveAttribute(android.R.attr.listPreferredItemHeight, value, true);
             android.util.DisplayMetrics metrics = new android.util.DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(metrics);
             int preferredHeight = (int) value.getDimension(metrics);
@@ -135,16 +137,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        // declare menu and add a event listener
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        this.uiHander = new UiHandler(this);
 
         // calling CoinMarket API, get data to generate our App's first page
         this.aClient = new CoinMarketClient(this, this);
         this.aClient.getListing();
 
+        // declare menu and add a event listener
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
     }
+
 
     /*
      *
@@ -152,9 +156,9 @@ public class MainActivity extends AppCompatActivity {
      *
      */
     public void callByGetListing(model.Listings listings ) {
-     //   ArrayList<aListings> listOfListing = Listings.INSTANCE.getListOfListing();
 
-
+        this.uiHander.setListings(listings);
+        this.uiHander.screenInitial();
     }
 
     /*
@@ -179,4 +183,6 @@ public class MainActivity extends AppCompatActivity {
         */
 
     }
+
+
 }
