@@ -8,70 +8,74 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <TableLayout
-            android:id="@+id/TableLayout_template"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <android.support.design.widget.BottomNavigationView
-                    android:id="@+id/navigation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorWhite"
-                    android:baselineAligned="false"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:menu="@menu/navigation">
-
-                </android.support.design.widget.BottomNavigationView>
-            </TableRow>
-
-            <TableRow
-                android:id="@+id/TableRow_template"
+            <TableLayout
+                android:id="@+id/TableLayout_template"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <RelativeLayout
-                    android:id="@+id/RelativeLayout_template"
+                <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="?android:attr/listPreferredItemHeight"
-                    android:weightSum="2">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <ImageView
-                        android:id="@+id/imageView_template"
+                    <android.support.design.widget.BottomNavigationView
+                        android:id="@+id/navigation"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_margin="6dip"
-                        android:contentDescription="TODO"
-                        android:src="@drawable/btc" />
+                        android:background="@color/colorWhite"
+                        android:baselineAligned="false"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:menu="@menu/navigation">
 
-                    <TextView
-                        android:id="@+id/textView_template"
+                    </android.support.design.widget.BottomNavigationView>
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow_template"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <RelativeLayout
+                        android:id="@+id/RelativeLayout_template"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity = "center_vertical"
-                        android:text="ETH (ETH) 300.44USD (24hr: -6.49)"
-                        android:textSize="16sp"
-                        android:layout_toRightOf="@id/imageView_template"/>
+                        android:layout_height="?android:attr/listPreferredItemHeight"
+                        android:weightSum="2">
+
+                        <ImageView
+                            android:id="@+id/imageView_template"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_margin="6dip"
+                            android:contentDescription="TODO"
+                            android:src="@drawable/btc" />
+
+                        <TextView
+                            android:id="@+id/textView_template"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_toRightOf="@id/imageView_template"
+                            android:gravity="center_vertical"
+                            android:text="ETH (ETH) 300.44USD (24hr: -6.49)"
+                            android:textSize="16sp" />
 
 
-                </RelativeLayout>
-            </TableRow>
+                    </RelativeLayout>
+                </TableRow>
 
-        </TableLayout>
-
-    </LinearLayout>
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>

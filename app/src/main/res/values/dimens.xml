@@ -1,4 +1,4 @@
 <resources>
-    <dimen name="image_marginEnd">6dp</dimen>
-    <dimen name="padding">6dp</dimen>
+    <dimen name="image_marginEnd">4dp</dimen>
+    <dimen name="padding">4dp</dimen>
 </resources>
