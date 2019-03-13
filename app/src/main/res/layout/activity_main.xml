@@ -40,7 +40,7 @@
 
                     </android.support.design.widget.BottomNavigationView>
                 </TableRow>
-
+<!--
                 <TableRow
                     android:id="@+id/TableRow_template"
                     android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                             android:layout_height="match_parent"
                             android:layout_margin="6dip"
                             android:contentDescription="TODO"
-                            android:src="@drawable/btc" />
+                            android:src="@drawable/eth" />
 
                         <TextView
                             android:id="@+id/textView_template"
@@ -69,9 +69,9 @@
                             android:text="ETH (ETH) 300.44USD (24hr: -6.49)"
                             android:textSize="16sp" />
 
-
                     </RelativeLayout>
                 </TableRow>
+-->
 
             </TableLayout>
         </LinearLayout>

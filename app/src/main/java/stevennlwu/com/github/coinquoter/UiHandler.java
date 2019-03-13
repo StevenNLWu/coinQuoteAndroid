@@ -88,7 +88,7 @@ public class UiHandler {
                         // create a new Image
                         ImageView image = new ImageView(mainWinContext);
                         image.setImageResource(imgaeId);
-                        image.setId(i);
+                        image.setId(i+1);
 
                         // determiinate the text context
                         String strSlug = listings.getData().get(i).getSlug();
@@ -105,7 +105,7 @@ public class UiHandler {
 
                         // set the text params
                         RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-                        txtParams.addRule(RelativeLayout.RIGHT_OF, i);
+                        txtParams.addRule(RelativeLayout.RIGHT_OF, i+1);
 
                         // set the image params
                         RelativeLayout.LayoutParams imageParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
@@ -113,7 +113,6 @@ public class UiHandler {
 
                         // add view component by component
                         mainTable.addView(tbRow);
-
                         tbRow.addView(rl);
                         rl.addView(image, imageParams);
                         rl.addView(text,txtParams);
