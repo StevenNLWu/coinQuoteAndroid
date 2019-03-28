@@ -90,7 +90,7 @@ public class UiHandler {
                         image.setImageResource(imgaeId);
                         image.setId(i+1);
 
-                        // determiinate the text context
+                        // determinate the text context
                         String strSlug = listings.getData().get(i).getSlug();
                         String strSymbol = listings.getData().get(i).getSymbol();
                         String strPrice =  String.format("%.2f USD", listings.getData().get(i).getQuote().getUSD().getPrice());
@@ -123,11 +123,11 @@ public class UiHandler {
                         text.getLayoutParams().height= RelativeLayout.LayoutParams.MATCH_PARENT;
 
                         // set the RelativeLayout params
-                        rl.getLayoutParams().width= RelativeLayout.LayoutParams.MATCH_PARENT;
+                        rl.getLayoutParams().width= RelativeLayout.LayoutParams.WRAP_CONTENT;
                         rl.getLayoutParams().height= preferredHeight;
 
                         // set the TableRow params
-                        tbRow.getLayoutParams().width= RelativeLayout.LayoutParams.MATCH_PARENT;
+                        tbRow.getLayoutParams().width= RelativeLayout.LayoutParams.WRAP_CONTENT;
                         tbRow.getLayoutParams().height= RelativeLayout.LayoutParams.MATCH_PARENT;
 
                 } // end of for-loop
