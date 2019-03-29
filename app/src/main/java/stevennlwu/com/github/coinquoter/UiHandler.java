@@ -40,7 +40,7 @@ public class UiHandler {
         handler.post(r);
     }
 
-    public void screenInitial()
+    public void displayAllAsset()
     {
         runOnUiThread(new Runnable(){
             @Override
@@ -131,6 +131,24 @@ public class UiHandler {
                         tbRow.getLayoutParams().height= RelativeLayout.LayoutParams.MATCH_PARENT;
 
                 } // end of for-loop
+            } // end of function run()
+        }); // end of Runnable()
+    }
+
+    public void displaySaveAsset() {
+
+        runOnUiThread(new Runnable(){
+            @Override
+            public void run(){
+                /* get Tablelayout defined in main.xml */
+                TableLayout mainTable = ((Activity) mainWinContext).findViewById(R.id.TableLayout_template);
+
+                // remove all row except the header
+                int childCount = mainTable.getChildCount();
+                if (childCount > 1) {
+                    mainTable.removeViews(1, childCount - 1);
+                }
+
             } // end of function run()
         }); // end of Runnable()
     }

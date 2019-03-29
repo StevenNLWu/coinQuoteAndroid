@@ -106,60 +106,6 @@ public class CoinMarketClient {
     }
 
 
-    /*
-    public void getTicker()
-    {
-        Uri.Builder builder = new Uri.Builder();
-        builder.scheme(this.strApiProtocol)
-                .authority(this.strApiURL)
-                .appendPath(this.strApiVersion)
-                .appendPath(this.strApiType)
-                .appendPath("listings")
-                .appendPath("latest")
-                .appendQueryParameter("limit", "100");
 
-        String url = builder.build().toString();
-
-
-        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET
-                                                                ,url
-                                                                ,null
-                                                                ,new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                // TODO Auto-generated method stub
-                try {
-                        JSONObject jObject = response.getJSONObject("data");
-                        Iterator<?> keys = jObject.keys();
-                        Ticker.INSTANCE.resetList(jObject.length());
-
-                        while (keys.hasNext()) {
-                            String key = (String) keys.next();
-                            JSONObject object = jObject.optJSONObject(key);
-                            Ticker.INSTANCE.addATicker(new aTicker(object));
-                        }
-
-                    callByGetTicker();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-                                                                , new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                // TODO Auto-generated method stub
-            }
-        });
-
-        // Add JsonObjectRequest to the RequestQueue
-        this.queue.add(jsObjRequest);
-    }
-    public void callByGetTicker()
-    {
-        this.mainApp.callByGetTicker();
-    }
-*/
 
 }

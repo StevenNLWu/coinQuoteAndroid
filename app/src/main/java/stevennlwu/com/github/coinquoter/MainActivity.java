@@ -19,8 +19,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import apiClient.CoinMarketClient;
 import model.Listings;
-import model.Ticker;
-import model.aTicker;
 
 /*
  *
@@ -41,11 +39,10 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.navigation_all:
-
-                return true;
-
+                    clickAllButton();
+                    return true;
                 case R.id.navigation_save:
-
+                    clickSaveButton();
                     return true;
                 case R.id.navigation_setting:
 
@@ -87,33 +84,19 @@ public class MainActivity extends AppCompatActivity {
      *
      */
     public void callByGetListing(model.Listings listings ) {
-
         this.uiHander.setListings(listings);
-        this.uiHander.screenInitial();
     }
 
-    /*
-     *
-     *   This function will be callbacked after calling coinMarket's API
-     *
-     */
-    public void callByGetTicker() {
 
-        ArrayList<aTicker> listOfListing = Ticker.INSTANCE.getListOfTicker();
-
-        // default first page is "All Asset"
-        this.mOnNavigationItemSelectedListener.onNavigationItemSelected(((BottomNavigationView) findViewById(R.id.navigation)).getMenu().getItem(0));
-
-        // for UI Thread
-       /* new Handler(Looper.getMainLooper()).post(new Runnable() {
-
-            public void run() {
-
-            }
-        });
-        */
-
+    public void clickAllButton() {
+        this.uiHander.displayAllAsset();
     }
+
+    public void clickSaveButton() {
+        this.uiHander.displaySaveAsset();
+    }
+
+
 
 
 }
