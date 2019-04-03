@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         this.aClient = new CoinMarketClient(this, this);
         this.aClient.getListing();
 
+
+
         // declare menu and add a event listener
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -87,13 +89,22 @@ public class MainActivity extends AppCompatActivity {
         this.uiHander.setListings(listings);
     }
 
+    public void callByGetQuotes(model.Quotes quotes)
+    {
+       String hello = "H";
+
+    }
+
+
 
     public void clickAllButton() {
         this.uiHander.displayAllAsset();
     }
 
     public void clickSaveButton() {
-        this.uiHander.displaySaveAsset();
+        this.aClient.getQuotes();
+
+        //this.uiHander.displaySaveAsset();
     }
 
 

@@ -99,10 +99,72 @@ public class CoinMarketClient {
         this.queue.add(jsObjRequest);
     }
 
+    public void getQuotes()
+    {
+        Uri.Builder builder = new Uri.Builder();
+        builder.scheme(this.strApiProtocol)
+                .authority(this.strApiURL)
+                .appendPath(this.strApiVersion)
+                .appendPath(this.strApiType)
+                .appendPath("quotes")
+                .appendPath("latest")
+                .appendQueryParameter("symbol", "BTC,ETH");
+
+        String url = builder.build().toString();
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET
+                                                                ,url
+                                                                ,null
+                                                                ,new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                // TODO Auto-generated method stub
+                try {
+                    String mJsonString = response.toString();
+                    JsonParser parser = new JsonParser();
+                    JsonElement mJson =  parser.parse(mJsonString);
+                    Gson gson = new Gson();
+                    model.Quotes quotes = gson.fromJson(mJson, model.Quotes.class);
+
+                    // call back to a function inside this class
+                    callByGetQuotes(quotes);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // TODO Auto-generated method stub
+                    }
+                })
+        {
+            /** Passing some request headers* */
+            @Override
+            public Map getHeaders() throws AuthFailureError {
+                HashMap headers = new HashMap();
+                headers.put("Content-Type", "application/json");
+                headers.put("X-CMC_PRO_API_KEY", strApiKey);
+                return headers;
+            }
+        };
+        // Add JsonObjectRequest to the RequestQueue
+        this.queue.add(jsObjRequest);
+    }
+
     // call back to mainApp
     public void callByGetListing(model.Listings listings)
     {
         this.mainApp.callByGetListing(listings);
+    }
+
+    // call back to mainApp
+    public void callByGetQuotes(model.Quotes quotes)
+    {
+        this.mainApp.callByGetQuotes(quotes);
+
     }
 
 
