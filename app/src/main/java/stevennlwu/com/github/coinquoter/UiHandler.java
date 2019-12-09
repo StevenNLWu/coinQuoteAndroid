@@ -3,11 +3,13 @@ package stevennlwu.com.github.coinquoter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -90,22 +92,58 @@ public class UiHandler {
                         image.setImageResource(imgaeId);
                         image.setId(i+1);
 
-                        // determinate the text context
+                        // determinate the asset's name and its current price; create a textView to display the info
+                        TextView text = new TextView(mainWinContext);
                         String strSlug = listings.getData().get(i).getSlug();
                         String strSymbol = listings.getData().get(i).getSymbol();
                         String strPrice =  String.format("%.2f USD", listings.getData().get(i).getQuote().getUSD().getPrice());
-                        String str24Hr =  String.format("24hr %.2f",listings.getData().get(i).getQuote().getUSD().getPercent_change_24h());
-                        TextView text = new TextView(mainWinContext);
-
-                        // create a new text
-                        String strText = strSlug + " (" + strSymbol + ") " + strPrice + " (" + str24Hr + ")";
+                        String strText = strSlug + " (" + strSymbol + ") " + strPrice ;
                         text.setText(strText);
                         text.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
                         text.setGravity(Gravity.CENTER_VERTICAL );
 
-                        // set the text params
-                        RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+                        // determinate the 24Hr-price-change; create a textView to display the info
+                        TextView text2nd = new TextView(mainWinContext);
+                        String str24Hr =  String.format("24hr %.2f",listings.getData().get(i).getQuote().getUSD().getPercent_change_24h());
+                        Double do24Hr =  listings.getData().get(i).getQuote().getUSD().getPercent_change_24h();
+                        if( do24Hr <0) {
+                            text2nd.setTextColor(Color.RED);
+                            str24Hr =  String.format("24hr %.2f", listings.getData().get(i).getQuote().getUSD().getPercent_change_24h());
+                        }
+                        else if(do24Hr >0){
+                            text2nd.setTextColor(Color.parseColor("#2e7d32"));
+                            str24Hr =  "24hr " + "+" + String.format("%.2f", + listings.getData().get(i).getQuote().getUSD().getPercent_change_24h());
+                        }
+                        text2nd.setText(str24Hr + "%");
+                        text2nd.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+                        text2nd.setGravity(Gravity.CENTER_VERTICAL );
+
+                        // determinate the 1Hr-price-change; create a textView to display the info
+                        TextView text3rd = new TextView(mainWinContext);
+                        String str1Hr =  String.format("1hr %.2f",listings.getData().get(i).getQuote().getUSD().getPercent_change_1h());
+                        Double do1Hr =  listings.getData().get(i).getQuote().getUSD().getPercent_change_1h();
+                        if( do1Hr <0) {
+                            text3rd.setTextColor(Color.RED);
+                            str1Hr =  String.format("1hr %.2f", listings.getData().get(i).getQuote().getUSD().getPercent_change_1h());
+                        }
+                        else if(do1Hr >0){
+                            text3rd.setTextColor(Color.parseColor("#2e7d32"));
+                            str1Hr = "1hr " + "+" + String.format("%.2f", + listings.getData().get(i).getQuote().getUSD().getPercent_change_1h());
+                        }
+                        text3rd.setText(str1Hr + "%");
+                        text3rd.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+                        text3rd.setGravity(Gravity.CENTER_VERTICAL );
+
+                        // set the text params; determinate the text layout
+                        RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                         txtParams.addRule(RelativeLayout.RIGHT_OF, i+1);
+                        RelativeLayout.LayoutParams txt2ndParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        txt2ndParams.addRule(RelativeLayout.RIGHT_OF, i+1);
+                        txt2ndParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, text.getId());
+                        RelativeLayout.LayoutParams txt3rdParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        txt3rdParams.addRule(RelativeLayout.RIGHT_OF, text2nd.getId());
+                        //txt3rdParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, text.getId());
+                        //txt3rdParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, text2nd.getId());
 
                         // set the image params
                         RelativeLayout.LayoutParams imageParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
@@ -116,9 +154,10 @@ public class UiHandler {
                         tbRow.addView(rl);
                         rl.addView(image, imageParams);
                         rl.addView(text,txtParams);
+                        rl.addView(text2nd,txt2ndParams);
+                        //rl.addView(text3rd,txt3rdParams);
 
                         // set the text params
-                        //RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
                         text.getLayoutParams().width= RelativeLayout.LayoutParams.MATCH_PARENT;
                         text.getLayoutParams().height= RelativeLayout.LayoutParams.MATCH_PARENT;
 

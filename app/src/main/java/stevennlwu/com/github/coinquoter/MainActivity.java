@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void callByGetListing(model.Listings listings ) {
         this.uiHander.setListings(listings);
+        this.uiHander.displayAllAsset();
     }
 
 
