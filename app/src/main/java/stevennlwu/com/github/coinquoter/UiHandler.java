@@ -137,12 +137,12 @@ public class UiHandler {
                         // set the text params; determinate the text layout
                         RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                         txtParams.addRule(RelativeLayout.RIGHT_OF, i+1);
-                        RelativeLayout.LayoutParams txt2ndParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        RelativeLayout.LayoutParams txt2ndParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                         txt2ndParams.addRule(RelativeLayout.RIGHT_OF, i+1);
                         txt2ndParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, text.getId());
-                        RelativeLayout.LayoutParams txt3rdParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                        txt3rdParams.addRule(RelativeLayout.RIGHT_OF, text2nd.getId());
-                        //txt3rdParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, text.getId());
+                        //RelativeLayout.LayoutParams txt3rdParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                        //txt3rdParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, text.getId());
+                        //txt3rdParams.addRule(RelativeLayout., text2nd.getId());
                         //txt3rdParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, text2nd.getId());
 
                         // set the image params
@@ -158,8 +158,12 @@ public class UiHandler {
                         //rl.addView(text3rd,txt3rdParams);
 
                         // set the text params
-                        text.getLayoutParams().width= RelativeLayout.LayoutParams.MATCH_PARENT;
+                        text.getLayoutParams().width= RelativeLayout.LayoutParams.WRAP_CONTENT;
                         text.getLayoutParams().height= RelativeLayout.LayoutParams.MATCH_PARENT;
+                        text2nd.getLayoutParams().width= RelativeLayout.LayoutParams.WRAP_CONTENT;
+                        text2nd.getLayoutParams().height= RelativeLayout.LayoutParams.WRAP_CONTENT;
+                        //text3rd.getLayoutParams().width= RelativeLayout.LayoutParams.WRAP_CONTENT;
+                        //text3rd.getLayoutParams().height= RelativeLayout.LayoutParams.WRAP_CONTENT;
 
                         // set the RelativeLayout params
                         rl.getLayoutParams().width= RelativeLayout.LayoutParams.WRAP_CONTENT;
