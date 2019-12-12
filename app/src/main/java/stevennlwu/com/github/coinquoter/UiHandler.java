@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Handler;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -102,37 +105,37 @@ public class UiHandler {
                         text.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
                         text.setGravity(Gravity.CENTER_VERTICAL );
 
-                        // determinate the 24Hr-price-change; create a textView to display the info
+                        // determinate the value of 24hr-price-change; create a textView to display the info
                         TextView text2nd = new TextView(mainWinContext);
                         String str24Hr =  String.format("24hr %.2f",listings.getData().get(i).getQuote().getUSD().getPercent_change_24h());
+                        Spannable span24Hr = new SpannableString(str24Hr + "%");
                         Double do24Hr =  listings.getData().get(i).getQuote().getUSD().getPercent_change_24h();
                         if( do24Hr <0) {
-                            text2nd.setTextColor(Color.RED);
-                            str24Hr =  String.format("24hr %.2f", listings.getData().get(i).getQuote().getUSD().getPercent_change_24h());
+                            span24Hr.setSpan(new ForegroundColorSpan(Color.RED), 0, span24Hr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         }
                         else if(do24Hr >0){
-                            text2nd.setTextColor(Color.parseColor("#2e7d32"));
-                            str24Hr =  "24hr " + "+" + String.format("%.2f", + listings.getData().get(i).getQuote().getUSD().getPercent_change_24h());
+                            str24Hr =  "24hr " + "+" + String.format("%.2f", + listings.getData().get(i).getQuote().getUSD().getPercent_change_24h()) + "%";
+                            span24Hr = new SpannableString(str24Hr);
+                            span24Hr.setSpan(new ForegroundColorSpan(Color.parseColor("#2e7d32")), 0, span24Hr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         }
-                        text2nd.setText(str24Hr + "%");
-                        text2nd.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
-                        text2nd.setGravity(Gravity.CENTER_VERTICAL );
+                        text2nd.setText(span24Hr);
+                        text2nd.append("   ");
 
-                        // determinate the 1Hr-price-change; create a textView to display the info
-                        TextView text3rd = new TextView(mainWinContext);
+                        // determinate the value of 1Hr-price-change; add the info into the textView of text2nd
                         String str1Hr =  String.format("1hr %.2f",listings.getData().get(i).getQuote().getUSD().getPercent_change_1h());
+                        Spannable span1Hr = new SpannableString(str1Hr + "%");
                         Double do1Hr =  listings.getData().get(i).getQuote().getUSD().getPercent_change_1h();
                         if( do1Hr <0) {
-                            text3rd.setTextColor(Color.RED);
-                            str1Hr =  String.format("1hr %.2f", listings.getData().get(i).getQuote().getUSD().getPercent_change_1h());
+                            span1Hr.setSpan(new ForegroundColorSpan(Color.RED), 0, span1Hr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         }
                         else if(do1Hr >0){
-                            text3rd.setTextColor(Color.parseColor("#2e7d32"));
-                            str1Hr = "1hr " + "+" + String.format("%.2f", + listings.getData().get(i).getQuote().getUSD().getPercent_change_1h());
+                            str1Hr = "1hr " + "+" + String.format("%.2f", + listings.getData().get(i).getQuote().getUSD().getPercent_change_1h()) + "%";
+                            span1Hr = new SpannableString(str1Hr);
+                            span1Hr.setSpan(new ForegroundColorSpan(Color.parseColor("#2e7d32")), 0, span1Hr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         }
-                        text3rd.setText(str1Hr + "%");
-                        text3rd.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
-                        text3rd.setGravity(Gravity.CENTER_VERTICAL );
+                        text2nd.append(span1Hr);
+                        text2nd.setTextSize(TypedValue.COMPLEX_UNIT_SP,12);
+                        text2nd.setGravity(Gravity.CENTER_VERTICAL );
 
                         // set the text params; determinate the text layout
                         RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -140,10 +143,6 @@ public class UiHandler {
                         RelativeLayout.LayoutParams txt2ndParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                         txt2ndParams.addRule(RelativeLayout.RIGHT_OF, i+1);
                         txt2ndParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, text.getId());
-                        //RelativeLayout.LayoutParams txt3rdParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                        //txt3rdParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, text.getId());
-                        //txt3rdParams.addRule(RelativeLayout., text2nd.getId());
-                        //txt3rdParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, text2nd.getId());
 
                         // set the image params
                         RelativeLayout.LayoutParams imageParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.MATCH_PARENT);
@@ -155,15 +154,12 @@ public class UiHandler {
                         rl.addView(image, imageParams);
                         rl.addView(text,txtParams);
                         rl.addView(text2nd,txt2ndParams);
-                        //rl.addView(text3rd,txt3rdParams);
 
                         // set the text params
                         text.getLayoutParams().width= RelativeLayout.LayoutParams.WRAP_CONTENT;
                         text.getLayoutParams().height= RelativeLayout.LayoutParams.MATCH_PARENT;
                         text2nd.getLayoutParams().width= RelativeLayout.LayoutParams.WRAP_CONTENT;
                         text2nd.getLayoutParams().height= RelativeLayout.LayoutParams.WRAP_CONTENT;
-                        //text3rd.getLayoutParams().width= RelativeLayout.LayoutParams.WRAP_CONTENT;
-                        //text3rd.getLayoutParams().height= RelativeLayout.LayoutParams.WRAP_CONTENT;
 
                         // set the RelativeLayout params
                         rl.getLayoutParams().width= RelativeLayout.LayoutParams.WRAP_CONTENT;
