@@ -29,4 +29,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     // for REST app
     implementation 'com.android.volley:volley:1.1.0'
+    // for joson to class object
+    implementation 'com.google.code.gson:gson:2.8.5'
 }
