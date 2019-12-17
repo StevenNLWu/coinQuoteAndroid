@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
             public void onRefresh( ) {
                 // refresh action
                 // mOnNavigationItemSelectedListener.onNavigationItemSelected();
+                aClient.getListing();
                 int intId = getCheckedItem(navigation);
                 mOnNavigationItemSelectedListener.onNavigationItemSelected(navigation.getMenu().getItem(intId));
 

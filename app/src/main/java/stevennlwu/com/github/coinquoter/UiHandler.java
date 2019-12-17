@@ -51,7 +51,7 @@ public class UiHandler {
             @Override
             public void run(){
 
-                // get value of “listPreferredItemHeight” attribute
+                    // get value of “listPreferredItemHeight” attribute
                     TypedValue value = new TypedValue();
                     mainWinContext.getTheme().resolveAttribute(android.R.attr.listPreferredItemHeight, value, true);
                     DisplayMetrics metrics = new DisplayMetrics();
@@ -105,8 +105,23 @@ public class UiHandler {
                         text.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
                         text.setGravity(Gravity.CENTER_VERTICAL );
 
-                        // determinate the value of 24hr-price-change; create a textView to display the info
+                        // determinate the value of 7d-price-change
                         TextView text2nd = new TextView(mainWinContext);
+                        String str1D = String.format("7d %.2f",listings.getData().get(i).getQuote().getUSD().getPercent_change_7d());
+                        Spannable span7d = new SpannableString(str1D + "%");
+                        Double do7d =  listings.getData().get(i).getQuote().getUSD().getPercent_change_7d();
+                        if( do7d <0) {
+                            span7d.setSpan(new ForegroundColorSpan(Color.RED), 0, span7d.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        }
+                        else if(do7d >0){
+                            str1D =  "24hr " + "+" + String.format("%.2f", + listings.getData().get(i).getQuote().getUSD().getPercent_change_24h()) + "%";
+                            span7d = new SpannableString(str1D);
+                            span7d.setSpan(new ForegroundColorSpan(Color.parseColor("#2e7d32")), 0, str1D.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        }
+                        text2nd.setText(span7d);
+                        text2nd.append("  ");
+
+                        // determinate the value of 24hr-price-change; create a textView to display the info
                         String str24Hr =  String.format("24hr %.2f",listings.getData().get(i).getQuote().getUSD().getPercent_change_24h());
                         Spannable span24Hr = new SpannableString(str24Hr + "%");
                         Double do24Hr =  listings.getData().get(i).getQuote().getUSD().getPercent_change_24h();
@@ -118,8 +133,8 @@ public class UiHandler {
                             span24Hr = new SpannableString(str24Hr);
                             span24Hr.setSpan(new ForegroundColorSpan(Color.parseColor("#2e7d32")), 0, span24Hr.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                         }
-                        text2nd.setText(span24Hr);
-                        text2nd.append("   ");
+                        text2nd.append(span24Hr);
+                        text2nd.append("  ");
 
                         // determinate the value of 1Hr-price-change; add the info into the textView of text2nd
                         String str1Hr =  String.format("1hr %.2f",listings.getData().get(i).getQuote().getUSD().getPercent_change_1h());
