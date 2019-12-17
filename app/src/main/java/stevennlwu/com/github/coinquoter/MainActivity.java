@@ -1,24 +1,16 @@
 package stevennlwu.com.github.coinquoter;
 
 import android.annotation.SuppressLint;
-import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.NavigationView;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
-
-import java.util.ArrayList;
 import apiClient.CoinMarketClient;
-import model.Listings;
 
 /*
  *
@@ -28,6 +20,9 @@ import model.Listings;
 public class MainActivity extends AppCompatActivity {
 
     private UiHandler uiHander;
+    private BottomNavigationView navigation;
+    private CoinMarketClient aClient;
+    private SwipeRefreshLayout swipeRefresh;
 
     // event listener for the Top-menu-bar
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -52,8 +47,17 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
-    private CoinMarketClient aClient;
+    // find out which current item of Navigation is selected
+    private int getCheckedItem(BottomNavigationView navigationView) {
+        Menu menu = navigationView.getMenu();
+        for (int i = 0; i < menu.size(); i++) {
+            MenuItem item = menu.getItem(i);
+            if (item.isChecked()) {
+                return i;
+            }
+        }
+        return -1;
+    }
 
     /*
     *
@@ -72,9 +76,31 @@ public class MainActivity extends AppCompatActivity {
         this.aClient.getListing();
 
         // declare menu and add a event listener
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        // for swipe-to-refresh
+        swipeRefresh = findViewById(R.id.swiperefresh_items);
+        swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh( ) {
+                // refresh action
+                // mOnNavigationItemSelectedListener.onNavigationItemSelected();
+                int intId = getCheckedItem(navigation);
+                mOnNavigationItemSelectedListener.onNavigationItemSelected(navigation.getMenu().getItem(intId));
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if(swipeRefresh.isRefreshing()) {
+                            swipeRefresh.setRefreshing(false);
+                        }
+                    }
+                }, 5000);   // 1000ms
+
+            }
+        });
     }
 
 
