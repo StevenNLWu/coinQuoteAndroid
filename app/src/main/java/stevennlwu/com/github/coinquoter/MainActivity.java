@@ -64,10 +64,26 @@ public class MainActivity extends AppCompatActivity {
     *   Our App starts in here
     *
      */
+
+    public void getMembers(java.util.concurrent.Callable<Void> callbackWithMembers){
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        getMembers(new java.util.concurrent.Callable<Void>() {
+
+                    public Void call() {
+                       // myParamMethod();
+                        return null;
+                    }
+                }
+        );
+
+
 
         this.uiHander = new UiHandler(this);
 
@@ -98,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                             swipeRefresh.setRefreshing(false);
                         }
                     }
-                }, 5000);   // 1000ms
+                }, 5000);   // in ms
 
             }
         });
@@ -112,16 +128,16 @@ public class MainActivity extends AppCompatActivity {
      */
     public void callByGetListing(model.Listings listings ) {
         this.uiHander.setListings(listings);
-        this.uiHander.displayAllAsset();
+        this.uiHander.displayAllCrypto();
     }
 
 
     public void clickAllButton() {
-        this.uiHander.displayAllAsset();
+        this.uiHander.displayAllCrypto();
     }
 
     public void clickSaveButton() {
-        this.uiHander.displaySaveAsset();
+        this.uiHander.displayMyCrypto();
     }
 
 

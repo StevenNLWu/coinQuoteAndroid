@@ -43,6 +43,17 @@
                                 app:menu="@menu/navigation">
                             </android.support.design.widget.BottomNavigationView>
                         </TableRow>
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <SearchView
+                                android:id="@+id/searchBar"
+                                android:icon="@android:drawable/ic_menu_search"
+                                app:showAsAction="always|collapseActionView"
+                                app:actionViewClass="android.support.v7.widget.SearchView"
+                                android:title="Search"/>
+                        </TableRow>
                     </TableLayout>
                 </LinearLayout>
         </ScrollView>

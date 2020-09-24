@@ -45,7 +45,7 @@ public class UiHandler {
         handler.post(r);
     }
 
-    public void displayAllAsset()
+    public void displayAllCrypto()
     {
         runOnUiThread(new Runnable(){
             @Override
@@ -66,10 +66,10 @@ public class UiHandler {
                     /* get Tablelayout defined in main.xml */
                     TableLayout mainTable = ((Activity) mainWinContext).findViewById(R.id.TableLayout_template);
 
-                    // remove all row except the header
+                    // remove all row except the header and the search-bar
                     int childCount = mainTable.getChildCount();
-                    if (childCount > 1) {
-                        mainTable.removeViews(1, childCount - 1);
+                    if (childCount > 2) {
+                        mainTable.removeViews(2, childCount - 2);
                     }
 
                     // loop one asset by one asset; display one by one
@@ -189,7 +189,7 @@ public class UiHandler {
         }); // end of Runnable()
     }
 
-    public void displaySaveAsset() {
+    public void displayMyCrypto() {
 
         runOnUiThread(new Runnable(){
             @Override
